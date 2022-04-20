@@ -26,14 +26,29 @@ module.exports = {
           {
             loader: 'css-loader',
             // options值为字符串或者对象 会被传入loader
-            options: {
-              // css模块化
-              modules: true
-            }
-          }
+            // options: {
+            //   // css模块化
+            //   modules: true
+            // }
+          },
         ]
         // 简写 use: ['style-loader', 'css-loader'] 最终会转化为上面的结构
       },
+      // 加载less文件
+      {
+        test: /\.less$/i,
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader'
+          }
+        ]
+      }
     ],
   },
 }
