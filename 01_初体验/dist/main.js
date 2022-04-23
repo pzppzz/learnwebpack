@@ -1,1 +1,0 @@
-(()=>{var o={324:o=>{o.exports={toString:(o,r)=>`姓名：${o}---年龄：${r}`}}},r={};function t(e){var s=r[e];if(void 0!==s)return s.exports;var n=r[e]={exports:{}};return o[e](n,n.exports,t),n.exports}(()=>{"use strict";const{toString:o}=t(324);console.log("加法:",2685),console.log("减法:",-2100),console.log("信息:",o("张三",23))})()})();
