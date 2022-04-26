@@ -10,28 +10,38 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   mode: 'development',  // 默认为production 打包后的代码是压缩过的，不易于阅读
-  devtool: 'hidden-source-map', // 默认为eval
-  entry: './src/index.js',
+  devtool: 'source-map', // 默认为eval
+  // entry: './src/index.js',
+  entry: './src/app.jsx',
   output: {
     filename: 'js/[name].bundle.js',
     path: path.resolve(__dirname, 'build'), 
   },
   module: {
     rules: [
-      // css
+      // 编译js
       {
-        test: /\.css$/i,
+        test: /\.js$/,
+        // 排除文件，不需使用babel
+        exclude: /node_modules/,
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
-            options: {
-              // 当css中通过@import引入其他css文件时，在往前几个使用loader先进行处理
-              importLoaders: 1
-            }
-          },
-          'postcss-loader',
+            loader: 'babel-loader',
+            // 可以通过babel.config.js进行配置
+            // options: {
+            //   // 该配置会根据.browserslistrc文件编译出适配浏览器的js代码，
+            //   presets: [
+            //     '@babel/preset-env'
+            //   ]
+            //   // plugins: [
+            //   //   '@babel/plugin-transform-arrow-functions'
+            //   // ]
+            // }
+          }
         ]
+      }, {
+        test: /\.jsx/,
+        use: ['babel-loader']
       }
     ]
   },
