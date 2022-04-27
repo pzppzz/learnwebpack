@@ -9,7 +9,14 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        use: ['ts-loader']
+        // 也可以使用babel-loader,但需要使用预设
+        // use: ['ts-loader']
+        use: [{
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-typescript']]
+          }
+        }]
       }
     ]
   }
