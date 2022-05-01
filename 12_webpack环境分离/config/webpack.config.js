@@ -39,6 +39,6 @@ const baseConfig = {
   ]
 }
 module.exports = function (env) {
-  process.env.NODE_ENV = env  // 使babel.config.js能判断当前环境
+  process.env.NODE_ENV = env.production ? 'production' : 'development'  // 使babel.config.js能判断当前环境
   return env === 'production' ? merge(baseConfig, prodConfig) : merge(baseConfig, devConfig)
 }
