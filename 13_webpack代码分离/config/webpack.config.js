@@ -31,6 +31,8 @@ const baseConfig = {
     }
   },
   optimization: {
+    // "natural" | "named" | "deterministic" | "size" | "total-size" | false
+    chunkIds: 'named', //https://webpack.js.org/configuration/optimization/#optimizationchunkids
     // 拆分包
     // https://webpack.js.org/plugins/split-chunks-plugin/
     splitChunks: {
@@ -46,6 +48,13 @@ const baseConfig = {
         }
       }
     },
+    // https://webpack.js.org/configuration/optimization/#optimizationruntimechunk
+    // runtimeChunk: true // single multiple boolean object
+    runtimeChunk: {
+      name: function(entrypoint) {
+        return `runtime-${entrypoint.name}`
+      }
+    }
   },
   module: {
     rules: [
